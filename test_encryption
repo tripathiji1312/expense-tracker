@@ -1,0 +1,40 @@
+import unittest
+import csv
+import os
+
+from auth import encryption  # Assuming your function is in a file named encryption_module.py
+
+class TestEncryption(unittest.TestCase):
+    
+    def setUp(self):
+        # Create a mock auth.csv file for testing
+        self.test_file_path = "test_auth.csv"
+        with open(self.test_file_path, "w", newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['a', '1'])
+            writer.writerow(['b', '2'])
+            writer.writerow(['c', '3'])
+    
+    def tearDown(self):
+        # Remove the mock file after testing
+        os.remove(self.test_file_path)
+    
+    def test_encryption_single_character(self):
+        self.assertEqual(encryption('a', self.test_file_path), '1')
+        self.assertEqual(encryption('b', self.test_file_path), '2')
+        self.assertEqual(encryption('c', self.test_file_path), '3')
+    
+    def test_encryption_multiple_characters(self):
+        self.assertEqual(encryption('abc', self.test_file_path), '123')
+    
+    def test_encryption_unknown_character(self):
+        self.assertEqual(encryption('d', self.test_file_path), '')  # Assuming unknown characters are ignored
+    
+    def test_encryption_mixed_characters(self):
+        self.assertEqual(encryption('aXbYcZ', self.test_file_path), '123')  # Assuming unknown characters are ignored
+    
+    def test_encryption_empty_string(self):
+        self.assertEqual(encryption('', self.test_file_path), '')
+
+if __name__ == '__main__':
+    unittest.main()

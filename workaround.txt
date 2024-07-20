@@ -1,0 +1,10 @@
+expense_manager/
+│
+├── auth.py <--
+├── budget.py
+├── expense.py
+├── income.py
+├── main.py
+├── report.py
+├── requirements.txt
+└── utils.py
