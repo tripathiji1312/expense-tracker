@@ -15,8 +15,7 @@ This project is a command-line based Expense Manager written in Python. It allow
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/yourusername/expense-manager.git
-   cd expense-manager
+   git clone https://github.com/tripathiji1312/expense-tracker.git
    ```
 2. **Install Dependencies:**
     Ensure you have Python installed (version 3.6 or higher). This project uses standard Python libraries, so no additional dependencies are required.
