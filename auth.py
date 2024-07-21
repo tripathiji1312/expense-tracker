@@ -58,6 +58,7 @@ def register(username):
     encrypted_password = encryption(password)
     salary = input("Enter your salary/income: ").strip()
     filename = username + ".csv"
+    filename = "./users_expenses/" + filename
     with open("users.csv", "a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([username, encrypted_password, salary])

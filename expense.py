@@ -1,8 +1,20 @@
 import csv
 import pandas as pd
 
-def add_expense(filename):
+def add_expense(filename, salary):
     while True:
+        total_expense = []
+        filename = "./users_expenses/" + filename
+        with open(filename, "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                total_expense.append(row[1])
+        total = 0
+        for i in total_expense:
+            total += int(i)
+        remaining = int(salary) - total
+        print(f"Your total expense is: {total}\nRemaining Expense is: {remaining}")
+        filename = "./users_expenses/" + filename
         item = input("Enter item: ")
         price = input("Enter price: ")
         with open(filename, "a", newline="") as file:
@@ -15,6 +27,18 @@ def add_expense(filename):
         else:
             break
 
-def show_expense(filename):
+def show_expense(filename, salary):
+    total_expense = []
+    filename = "./users_expenses/" + filename
+    with open(filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            total_expense.append(row[1])
+    total = 0
+    for i in total_expense:
+        total += int(i)
+    remaining = int(salary) - total
+    print(f"Your total expense is: {total}\nRemaining Expense is: {remaining}")
+    # filename = "./users_expenses/" + filename
     df = pd.read_csv(filename)
     print(df.to_string())
